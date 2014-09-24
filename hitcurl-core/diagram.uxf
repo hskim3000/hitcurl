@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>360</x>
+      <y>360</y>
+      <w>160</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Class HitcurL
+--
+.
+.
+.
+.
+
+--
+HitcurL.java</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>340</x>
+      <y>270</y>
+      <w>122</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+/'extends'/</panel_attributes>
+    <additional_attributes>40;30;100;90</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>260</x>
+      <y>200</y>
+      <w>240</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>/&lt;&lt;AbstractClass&gt;&gt;/
+
+Game
+bg=orange
+--
++setScreen (Screen screen)
++Screen getScreen ()
+--
+com.badlogic.gdx</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>310</x>
+      <y>120</y>
+      <w>144</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+/'implements'/</panel_attributes>
+    <additional_attributes>80;30;80;80</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>590</x>
+      <y>380</y>
+      <w>220</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>/&lt;&lt;AbstractClass&gt;&gt;/
+AbstractGameScreen
+--
+.
+--
+AbstactScreen.java
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>580</x>
+      <y>140</y>
+      <w>190</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>/Interface Screen/
+--
+bg=orange
++resize (int width, int height);
++render (float delta);
++show ();
++hide ();
++pause ();
++resume ();
++dispose ();
+--
+com.badlogic.gdx</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>230</x>
+      <y>0</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>/Interface ApplicationListener/
+--
++create ();
++resize (int width, int height);
++render ();
++pause ();
++resume ();
++dispose ();
+bg=orange
+--
+com.badlogic.gdx</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>620</x>
+      <y>280</y>
+      <w>144</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+/'implements'/</panel_attributes>
+    <additional_attributes>80;30;80;100</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>470</x>
+      <y>200</y>
+      <w>130</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+r1=screen
+m1=1
+</panel_attributes>
+    <additional_attributes>110;30;30;60</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>500</x>
+      <y>780</y>
+      <w>160</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Class WorldController
+--
+.
+/Gestion du Stage/
+/Déroulement du Jeu/
+.
+--
+WorldController.java</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>870</x>
+      <y>320</y>
+      <w>180</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Class Constants
+--
+.
+.
+.
+.
+
+--
+Constants.java</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>250</x>
+      <y>570</y>
+      <w>140</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Class SplashScreen
+--
+.
+.
+.
+.
+
+--
+SplashScreen.java</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>340</x>
+      <y>450</y>
+      <w>90</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+r1=/new/
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>30;120;70;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>360</x>
+      <y>430</y>
+      <w>250</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+/'extends'/</panel_attributes>
+    <additional_attributes>230;30;30;170</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>360</x>
+      <y>630</y>
+      <w>250</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+r1=/new/
+m1=1
+</panel_attributes>
+    <additional_attributes>230;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>590</x>
+      <y>570</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Class GameScreen
+--
+.
+.
+.
+.
+
+--
+GameScreen.java</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>620</x>
+      <y>430</y>
+      <w>122</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+/'extends'/</panel_attributes>
+    <additional_attributes>70;30;70;140</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>780</x>
+      <y>730</y>
+      <w>160</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Class WorldRenderer
+--
+.
+.
+
+--
+WorldRenderer.java</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>10</x>
+      <y>750</y>
+      <w>390</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Class InputAdapter
+direct 'implements' de InputProcessor 
+--
+bg=orange
++keyDown (int keycode)
++keyUp (int keycode)
++keyTyped (char character)
++touchDown (int screenX, int screenY, int pointer, int button)
++touchUp (int screenX, int screenY, int pointer, int button)
++touchDragged (int screenX, int screenY, int pointer)
++mouseMoved (int screenX, int screenY)
++scrolled (int amount) 
+--
+com.badlogic.gdx
+bg=orange
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>370</x>
+      <y>780</y>
+      <w>150</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+/'extends'/</panel_attributes>
+    <additional_attributes>30;50;130;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>740</x>
+      <y>850</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Class Group
+--
+.
+--
+com.badlogic.gdx.scenes.scene2d
+bg=orange
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>550</x>
+      <y>660</y>
+      <w>120</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+r1=/worldController/
+
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>50;120;90;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>710</x>
+      <y>660</y>
+      <w>130</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+r1=/worldRenderer/
+
+m1=1
+
+</panel_attributes>
+    <additional_attributes>110;70;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>640</x>
+      <y>760</y>
+      <w>160</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+r1=/worldRenderer/
+
+m1=1
+
+</panel_attributes>
+    <additional_attributes>30;80;140;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>580</x>
+      <y>860</y>
+      <w>50</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+r1=/level/
+
+m1=1
+
+</panel_attributes>
+    <additional_attributes>30;90;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>500</x>
+      <y>950</y>
+      <w>180</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Class Level
+--
+
+/Création d'un Level/
+/en utilisant une grille et/
+/des lettres/
+
+--
+Level.java</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>750</x>
+      <y>950</y>
+      <w>220</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Class CubesGroup
+--
+/Créer des formes/
+/et de pouvoir les bouger et/
+/les tourner/
+
+--
+CubesGroup.java
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>650</x>
+      <y>970</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+r1=/lettre/
+m1=n
+</panel_attributes>
+    <additional_attributes>100;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>870</x>
+      <y>450</y>
+      <w>180</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Class Assets
+--
+.
+.
+.
+.
+
+--
+Assets.java</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>790</x>
+      <y>890</y>
+      <w>122</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+/'extends'/</panel_attributes>
+    <additional_attributes>70;30;70;70</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>290</x>
+      <y>960</y>
+      <w>150</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Class Grille
+--
+/Créer une Grille 8x8/
+;
+;
+--
+CubesGroup.java
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>970</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Class Table
+--
+.
+--
+com.badlogic.gdx.scenes.scene2d
+bg=orange
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>190</x>
+      <y>950</y>
+      <w>122</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+/'extends'/</panel_attributes>
+    <additional_attributes>40;50;100;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>410</x>
+      <y>960</y>
+      <w>110</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+r1=/grille/
+
+m1=1
+
+</panel_attributes>
+    <additional_attributes>30;30;90;30</additional_attributes>
+  </element>
+</diagram>
