@@ -2,15 +2,19 @@ package com.python4d.hitcurl.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.badlogic.gdx.utils.Array;
 
 public class CubesGroup extends Group {
 
@@ -23,24 +27,44 @@ public class CubesGroup extends Group {
 	private boolean clicked = false;
 	private boolean inGrille = false;
 	private Vector2 initPos;
+	private Skin skin;
 
+	/** @see #CubesGroup(String name, Object[][] objects) */
 	public CubesGroup(String name) {
 		this(name, Constants.lettres.get(name));
 	}
 
+	/**
+	 * Crée un Group Acteur composé de cube suivant objects
+	 * {@link Constants#lettres lettres}
+	 * 
+	 * @author damien
+	 */
 	public CubesGroup(String name, Object[][] objects) {
+		skin = Assets.getAssetManager().get(Constants.SKIN_OBJECTS, Skin.class);
+
 		if (Constants.DEBUG)
 			this.debugAll();
 		this.setName(name + "-*");
 		this.setTouchable(Touchable.childrenOnly);
 		cubesize = Constants.SIZE_CUBE;
 		Vector2 xy;
-		AtlasRegion ar;
-
+		Image img;
 		for (Object[] cube : objects) {
+			// Est-ce que le cube à plusieurs images, si oui on crée un Animated
+			// Actor
+			if (((String[]) cube[1]).length > 1) {
+				Array<AtlasRegion> tmp = new Array<AtlasRegion>();
+				for (int i = 1; i < ((String[]) cube[1]).length; i++) {
+					tmp.add((AtlasRegion) skin.getRegion(((String[]) cube[1])[i]));
+				}
+				img = new AnimatedActor(new Animation((float) Math.random() * .15f + .15f, tmp, Animation.PlayMode.NORMAL));
+			}
+			// Sinon on crée une simple image avec la première image du cube
+			else
+				img = new Image(skin, ((String[]) cube[1])[0]);
+
 			xy = (Vector2) cube[0];
-			ar = (AtlasRegion) cube[1];
-			Image img = new Image(ar);
 			img.setName("cube-" + name);
 			img.setPosition(xy.x * cubesize, xy.y * cubesize);
 			img.setTouchable(Touchable.enabled);
@@ -51,8 +75,9 @@ public class CubesGroup extends Group {
 		this.setWidth(size.x + cubesize);
 		this.setHeight(size.y + cubesize);
 		this.setInitPos(new Vector2(0, 0));
+
 		// pour la rotation prendre un pivot simple pour la rotation par rapport
-		// à la grille...
+		// à la grille...*/
 		this.setOrigin(Math.min(getWidth() / 2, getHeight() / 2), Math.min(getWidth() / 2, getHeight() / 2));
 
 		this.addListener((new DragListener() {
@@ -65,6 +90,10 @@ public class CubesGroup extends Group {
 							getTouchDownX(), getTouchDownY())));
 				}
 				isDragging = true;
+				for (Actor a : getChildren().items) {
+					if (a != null && a instanceof AnimatedActor)
+						((AnimatedActor) a).getAnim().setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+				}
 				Vector2 v = localToStageCoordinates((new Vector2(x, y)));
 
 				// On ramène l'objet au centre de rotation pour le faire une
@@ -105,7 +134,7 @@ public class CubesGroup extends Group {
 		// x' = x cos f - y sin f
 		// y' = y cos f + x sin f
 
-		this.addListener(new ClickListener() {
+		this.addListener(new ClickListener(-1) {
 
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -113,11 +142,17 @@ public class CubesGroup extends Group {
 				if (!isDragging
 						|| DragStart.dst2(localToStageCoordinates(new Vector2(
 								x, y))) < Dragdelta * getScaleX()) {
-
-					setRotation(getRotation() + 90);
+					if (event.getButton() == 0)
+						setRotation(getRotation() + 90);
+					else
+						setRotation(getRotation() - 90);
 				} else
 					DragStart.set(localToStageCoordinates(new Vector2(x, y)));
 				isDragging = false;
+				for (Actor a : getChildren().items) {
+					if (a != null && a instanceof AnimatedActor)
+						((AnimatedActor) a).getAnim().setPlayMode(Animation.PlayMode.NORMAL);
+				}
 				Gdx.app.debug(
 						TAG,
 						"clicked(cube:" + getName() + ") #"

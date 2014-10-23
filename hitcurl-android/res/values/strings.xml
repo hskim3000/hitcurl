@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">hitcurl</string>
+    <string name="app_version">1.0alpha</string>
+    <string name="app_id">81537901022</string>
+    <string name="achievement_100">CgkI3sOm4K8CEAIQAQ</string>
+    <string name="achievement_200">CgkI3sOm4K8CEAIQAg</string>
+    <string name="achievement_300">CgkI3sOm4K8CEAIQBA</string>
+    <string name="achievement_400">CgkI3sOm4K8CEAIQBQ</string>
+    <string name="achievement_500">CgkI3sOm4K8CEAIQBg</string>
+    <string name="leaderboard_highscoreeasy">CgkI3sOm4K8CEAIQBw</string>
+    <string name="leaderboard_highscorenormal">CgkI3sOm4K8CEAIQCA</string>
+    <string name="leaderboard_highscoreexpert">CgkI3sOm4K8CEAIQCQ</string>
+
+</resources>

@@ -26,6 +26,6 @@ public class DesktopLauncher {
 		cfg.width = (int) Constants.VIEWPORT_WIDTH;
 		cfg.height = (int) Constants.VIEWPORT_HEIGHT;
 
-		new LwjglApplication(new HitcurL(), cfg);
+		new LwjglApplication(new HitcurL(new DesktopGoogleServices(), "alpha"), cfg);
 	}
 }

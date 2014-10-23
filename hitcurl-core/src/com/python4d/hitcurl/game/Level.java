@@ -1,5 +1,6 @@
 package com.python4d.hitcurl.game;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.repeat;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleBy;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
@@ -9,34 +10,44 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 public class Level {
 	public static final String TAG = Level.class.getName();
 
 	public enum LetterInGame {
 		h, i, t, c, u, r, l
-	};
+	}
 
 	public Rectangle BoundsOfGame;
 	public Stage stage;
-	Letter[] letters = new Letter[7];
 	CubesGroup[] lettres = new CubesGroup[7];
 	private Grille grille;
 	public int level;
 	private Vector2 posGrille;
 	public boolean isComplete;
+	private long showSolution = 0;
+	public int iPaid = 0;
+	private int nbClue;
 
-	public Level(Stage stage, int level) {
+	public Level(Stage stage, int level, int nbClue) {
 		this.stage = stage;
 		this.level = level;
+		this.nbClue = nbClue;
 		init(level);
 
+	}
+
+	public Level(Stage stage, int level) {
+		this(stage, level, 0);
 	}
 
 	// Initialise à partir d'un fichier la grille de jeu
 	private void init(int level) {
 		// Création de la grille
-		grille = new Grille(level);
+
+		grille = new Grille(level, nbClue);
+
 		stage.addActor(grille);
 
 		// ScreenFactor = 1.5f * wordController.screenFactor;
@@ -45,6 +56,7 @@ public class Level {
 				stage.getHeight() / 2 - grille.getMinHeight() / 2f);
 		grille.pack();
 		posGrille = new Vector2(grille.getX(), grille.getY());
+
 		Gdx.app.debug(TAG, "posion grille=" + posGrille);
 
 		// Création des lettres en utilisant des cubes de couleurs Class
@@ -58,7 +70,7 @@ public class Level {
 		lettres[6] = new CubesGroup("l");
 		for (CubesGroup l : lettres) {
 			l.setTransform(true);
-			l.getColor().a = 0.8f;
+			l.getColor().a = 0.9f;
 			stage.addActor(l);
 		}
 
@@ -85,6 +97,16 @@ public class Level {
 	}
 
 	public void update(float deltaTime) {
+		if (showSolution > System.currentTimeMillis())
+			assert true; // NOP
+		else {
+			if (showSolution < System.currentTimeMillis()) {
+				for (Actor l : lettres)
+					l.setVisible(true);
+				grille.ShowSolution(false);
+				showSolution = 0;
+			}
+		}
 		for (CubesGroup l : lettres) {
 			if (l.isClicked()) {
 				l.setClicked(false);
@@ -93,8 +115,8 @@ public class Level {
 				float deltaMiddleY = l.getOriginY() * l.getScaleY() - l.getOriginY();
 				if (l.getX() > posGrille.x + deltaMiddleX - nbPixelCube / 2
 						&& l.getY() > posGrille.y + deltaMiddleY - nbPixelCube / 2
-						&& l.getX() < (posGrille.x + (grille.getWidth() - l.getWidth()) + nbPixelCube * 0.5f)
-						&& l.getY() < (posGrille.y + (grille.getHeight() - l.getHeight()) + nbPixelCube * 0.5f)) {
+						&& l.getX() < (posGrille.x + deltaMiddleX + grille.getWidth() - nbPixelCube / 2)
+						&& l.getY() < (posGrille.y + deltaMiddleY + grille.getHeight() - nbPixelCube / 2)) {
 
 					int nb_blocsx = (int) ((l.getX() - posGrille.x - deltaMiddleX + nbPixelCube / 2) / nbPixelCube);
 					int nb_blocsy = (int) ((l.getY() - posGrille.y - deltaMiddleY + nbPixelCube / 2) / nbPixelCube);
@@ -103,6 +125,15 @@ public class Level {
 
 					l.setInGrille(true);
 
+					// if (!IsOnWhite(l))
+					// l.addAction(sequence(alpha(0.2f, 0.2f), alpha(0.5f,
+					// 0.1f), run(new Runnable() {
+					// public void run() {
+					// System.out.println("Action complete!");
+					// }
+					// })));
+					// else
+					// l.getColor().a = 0.9f;
 					Gdx.app.debug(TAG, "delta=" + new Vector2(deltaMiddleX, deltaMiddleY)
 							+ "\n  nb_bloc =\t" + new Vector2(nb_blocsx, nb_blocsy)
 							+ "\n  nbPixelCube =\t" + nbPixelCube
@@ -111,31 +142,75 @@ public class Level {
 							+ "\n  LetterWidth =\t" + new Vector2(l.getWidth(), l.getHeight()));
 
 					isComplete = IsComplete();
-				} else
+
+				} else {
 					l.setInGrille(false);
+					isComplete = false;
+				}
 			}
 		}
 	}
 
+	private boolean IsOnWhite(CubesGroup l) {
+		Actor act = new Actor();
+		int nb = 0;
+		boolean isOnWhite = true;
+		for (Actor actor : l.getChildren()) {
+			Vector2 coords = new Vector2(actor.localToStageCoordinates(new Vector2(0, 0)));
+			coords = grille.stageToLocalCoordinates(new Vector2(coords.x, coords.y));
+			act = grille.hit(coords.x, coords.y, false);
+			Gdx.app.debug(TAG, "hit(IsOnWhite) " + new Vector2(coords.x, coords.y) + new Vector2(actor.getX(), actor.getY())
+					+ grille.stageToLocalCoordinates(new Vector2(coords.x, coords.y))
+					+ " Lettre(" + nb + ")=\t" + actor + " =>> Act  hit val= " + act + "\tLettre sur des cases Blanches? " + isOnWhite);
+			if (act != null) {
+				if (!actor.getName().endsWith(act.getName()) || (!act.getName().equals("*") && act.getName().equals(actor.getName()))) {
+					isOnWhite = false;
+				}
+			}
+			nb++;
+		}
+		return isOnWhite;
+	}
+
 	public boolean IsComplete() {
 		Actor act = new Actor();
+
+		Actor act_under = new Actor();
 		int nb = 0;
 		boolean complete = true;
 		for (Actor actor : grille.getChildren()) {
+
+			// On clique à l'endroit de chaque case de grille et on récupère
+			// l'actor qui s'y trouve
 			act = grille.getStage().hit((actor.getX() + 1) + posGrille.x, (1 + actor.getY()) + posGrille.y, true);
-
+			// S'il y a un actor à cet endroit
 			if (act.getName() != null) {
-				if (!act.getName().endsWith(grille.getVal()[nb]) || (!act.getName().equals("*") && act.getName().equals(grille.getVal()[nb]))) {
+				// Si cet actor n'a pas le nom prévu par la grille
+				// <!act.getName().endsWith(grille.getVal()[nb]) || (>
+				// ou (si cet actor trouvé n'est pas égal à une case noire mais
+				// une case non encore occupé
+				if (!act.getName().equals("*") && act.getName().equals(grille.getVal()[nb]))
 					complete = false;
-					break;
-				}
-				Gdx.app.debug(TAG, "hit1 " + new Vector2(actor.getX(), actor.getY()) + " GrilleInStage(" + nb + ")=\t" + act
-						+ " =>> Grille val= " + grille.getVal()[nb] + "\tGrille Complete? " + complete);
+				Gdx.app.debug(TAG, "hit(IsComplete) " + new Vector2(actor.getX(), actor.getY()) + " GrilleInStage(" + nb + ")=\t" + act
+						+ " =>> Grille val= " + grille.getVal()[nb] + "\tact.getName()? " + act.getName());
 
-				if (grille.getVal()[nb].equals("*") && !act.getName().endsWith("*"))
+				if (grille.getVal()[nb].equals("*") && !act.getName().endsWith("*")) {
 					act.addAction(
-							sequence(scaleBy(0.1f, 0.1f, 0.5f),
-									scaleBy(-0.1f, -0.1f, 0.5f)));
+							repeat(3, sequence(scaleBy(0.1f, 0.1f, 0.1f),
+									scaleBy(-0.1f, -0.1f, 0.1f))));
+				}
+				// On va regarder si sous un cube il n'y a pas un autre cube...
+				act.setTouchable(Touchable.childrenOnly);
+				act_under = grille.getStage().hit((actor.getX() + 1) + posGrille.x, (1 + actor.getY()) + posGrille.y, true);
+				if (act_under != null) {
+					if (act_under.getName().startsWith("cube-")) {
+						act.addAction(
+								repeat(3, sequence(scaleBy(0.1f, 0.1f, 0.1f),
+										scaleBy(-0.1f, -0.1f, 0.1f))));
+					}
+				}
+				act.setTouchable(Touchable.enabled);
+
 			}
 			nb++;
 		}
@@ -144,7 +219,7 @@ public class Level {
 	}
 
 	public void SavePosition(int niveau) {
-		Preferences prefs = Gdx.app.getPreferences("LEVEL" + niveau);
+		Preferences prefs = Gdx.app.getPreferences("LEVEL" + niveau + "NBCLUE" + nbClue);
 
 		for (CubesGroup l : lettres) {
 			prefs.putFloat(l.getName() + "x", l.getX());
@@ -153,11 +228,12 @@ public class Level {
 
 		}
 		prefs.putBoolean("isComplete", isComplete);
+		prefs.putInteger("isPaid", iPaid);
 		prefs.flush();
 	}
 
 	public void RestorePosition(int niveau) {
-		Preferences prefs = Gdx.app.getPreferences("LEVEL" + niveau);
+		Preferences prefs = Gdx.app.getPreferences("LEVEL" + niveau + "NBCLUE" + nbClue);
 
 		for (CubesGroup l : lettres) {
 			float pos = 0.0f;
@@ -170,6 +246,21 @@ public class Level {
 			l.setRotation(prefs.getFloat(l.getName() + "rot", 0));
 		}
 		isComplete = prefs.getBoolean("isComplete", false);
+		iPaid = prefs.getInteger("isPaid", 0);
+	}
+
+	public void Solution(long timeSec) {
+		for (Actor l : lettres)
+			l.setVisible(false);
+		grille.ShowSolution(true);
+		showSolution = timeSec * 1000 + System.currentTimeMillis();
+
+	}
+
+	public void StopMove(boolean b) {
+		for (Actor l : lettres)
+			l.setTouchable(Touchable.disabled);
+
 	}
 
 }

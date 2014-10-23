@@ -45,7 +45,7 @@
 		cuberouge:{
 			drawable:cuberouge
 		},
-		dcubegris:{
+		cubegris:{
 			drawable:cubegris
 		},
 		cubeciel:{
@@ -56,6 +56,9 @@
 		},
 		rondJauneGauche:{
 			drawable:BoutonJauneGauche
+		},
+		solution:{
+			drawable:solution
 		},
 		
 	},
@@ -84,20 +87,27 @@
 		goodgirl:{
 			file:goodgirl.fnt
 		},
+		goodgirl2:{
+			file:goodgirl.fnt
+		},
 		berlin:{
 			file:berlin.fnt
-		}	,	
+		}
+		,
 		sketchfont:{
-			file:"sketchblock.fnt"
+			file:sketchblock.fnt
 		},
 		fingerpaint:{
-			file:"fingerpaint.fnt"
+			file:fingerpaint.fnt
 		}
 		
 	},
 	com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle:{
 		default:{
-			font:fingerpaint
+			font:goodgirl
+		},
+		berlin:{
+			font:berlin
 		}
 		
 	},
@@ -113,7 +123,35 @@
 			up:BoutonJauneGauche,
 			font:berlin,
 			fontColor:white
+		},
+		solution:{
+			down:solution,
+			up:solution,
+			font:berlin,
+			fontColor:white
+		},
+		FondNoir:{
+			down:black,
+			up:black,
+			font:goodgirl
+		},
+		HighScore:{
+			down:black,
+			up:black,
+			font:goodgirl2
+		},
+		default:{
+			font:berlin,
+			down:cubevert,
+			up:cuberouge
 		}
 		
+	},
+	com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle:{
+		default:{
+			background:cubebleu,
+			titleFont:berlin,
+			titleFontColor:red
+		}
 	}
 }

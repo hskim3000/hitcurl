@@ -1,138 +1,320 @@
 
 hitcurl.png
-size: 945,239
+size: 832,1016
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 BoutonJauneDroit
   rotate: false
-  xy: 2, 2
+  xy: 514, 901
   size: 116, 115
   orig: 116, 115
   offset: 0, 0
   index: -1
 BoutonJauneGauche
   rotate: false
-  xy: 580, 124
+  xy: 2, 128
   size: 115, 115
   orig: 115, 115
   offset: 0, 0
   index: -1
+black
+  rotate: false
+  xy: 2, 245
+  size: 500, 50
+  orig: 500, 50
+  offset: 0, 0
+  index: -1
 c
   rotate: false
-  xy: 268, 45
+  xy: 514, 753
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
 cubeblanc
   rotate: false
-  xy: 120, 19
+  xy: 504, 271
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 cubebleu
   rotate: false
-  xy: 697, 141
+  xy: 632, 918
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubebleu3D
+  rotate: false
+  xy: 2, 28
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 cubeciel
   rotate: false
-  xy: 895, 215
+  xy: 76, 102
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubeciel3D
+  rotate: false
+  xy: 119, 145
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 cubegris
   rotate: false
-  xy: 344, 93
+  xy: 193, 219
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubegris10
+  rotate: false
+  xy: 514, 727
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubegris11
+  rotate: false
+  xy: 564, 801
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubegris12
+  rotate: false
+  xy: 756, 992
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubegris13
+  rotate: false
+  xy: 504, 245
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubegris14
+  rotate: false
+  xy: 530, 271
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubegris3D
+  rotate: false
+  xy: 658, 918
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 cubejaune
   rotate: false
-  xy: 146, 19
+  xy: 2, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubejaune3D
+  rotate: false
+  xy: 28, 28
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 cubenoir
   rotate: false
-  xy: 723, 141
+  xy: 76, 76
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 cuberose
   rotate: false
-  xy: 895, 189
+  xy: 145, 145
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose1
+  rotate: false
+  xy: 193, 193
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose10
+  rotate: false
+  xy: 756, 966
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose11
+  rotate: false
+  xy: 782, 992
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose12
+  rotate: false
+  xy: 530, 245
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose13
+  rotate: false
+  xy: 684, 918
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose14
+  rotate: false
+  xy: 28, 2
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose15
+  rotate: false
+  xy: 219, 193
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose16
+  rotate: false
+  xy: 245, 219
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose17
+  rotate: false
+  xy: 514, 675
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose2
+  rotate: false
+  xy: 219, 219
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose3
+  rotate: false
+  xy: 514, 701
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose3D
+  rotate: false
+  xy: 782, 966
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberose4
+  rotate: false
+  xy: 564, 775
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 cuberouge
   rotate: false
-  xy: 921, 215
+  xy: 808, 992
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cuberouge3D
+  rotate: false
+  xy: 710, 918
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 cubevert
   rotate: false
-  xy: 344, 67
+  xy: 245, 193
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+cubevert3D
+  rotate: false
+  xy: 271, 219
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 h
   rotate: false
-  xy: 120, 45
+  xy: 514, 827
   size: 72, 72
   orig: 72, 72
   offset: 0, 0
   index: -1
 i
   rotate: false
-  xy: 318, 45
+  xy: 588, 827
   size: 24, 72
   orig: 24, 72
   offset: 0, 0
   index: -1
 l
   rotate: false
-  xy: 697, 167
+  xy: 632, 944
   size: 72, 72
   orig: 72, 72
   offset: 0, 0
   index: -1
 r
   rotate: false
-  xy: 845, 167
+  xy: 706, 944
   size: 48, 72
   orig: 48, 72
   offset: 0, 0
   index: -1
+solution
+  rotate: false
+  xy: 2, 419
+  size: 510, 597
+  orig: 510, 597
+  offset: 0, 0
+  index: -1
 t
   rotate: false
-  xy: 194, 45
+  xy: 2, 54
   size: 72, 72
   orig: 72, 72
   offset: 0, 0
   index: -1
 tetris
   rotate: false
-  xy: 2, 119
+  xy: 2, 297
   size: 576, 120
   orig: 576, 120
   offset: 0, 0
   index: -1
 u
   rotate: false
-  xy: 771, 167
+  xy: 119, 171
   size: 72, 72
   orig: 72, 72
   offset: 0, 0

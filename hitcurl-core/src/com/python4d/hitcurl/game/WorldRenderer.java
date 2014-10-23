@@ -2,13 +2,10 @@ package com.python4d.hitcurl.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 
 public class WorldRenderer implements Disposable {
 	private static final String TAG = WorldRenderer.class.getName();
-	public OrthographicCamera camera, cameraHUD;
-	private SpriteBatch batch;
 
 	// On récupére l'adresse de worldController pour pouvoir dessiner les objets
 	// définis/dessinés dans level
@@ -20,23 +17,22 @@ public class WorldRenderer implements Disposable {
 	}
 
 	private void init() {
-		batch = (SpriteBatch) worldController.stage.getBatch();
-		cameraHUD = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
 	// ==========================================================RENDER
-	public void render() {
-		renderWorld(batch);
-		renderGui(batch);
+	public void render(boolean paused) {
+		renderWorld();
+		renderGui();
+
 	}
 
-	private void renderGui(SpriteBatch batch) {
+	private void renderGui() {
 
 		worldController.hud.act(Gdx.graphics.getDeltaTime());
 		worldController.hud.draw();
 	}
 
-	private void renderWorld(SpriteBatch batch) {
+	private void renderWorld() {
 		worldController.stage.act(Gdx.graphics.getDeltaTime());
 		worldController.stage.draw();
 	}
@@ -44,7 +40,7 @@ public class WorldRenderer implements Disposable {
 	// ======================================================RESIZE
 	public void resize(int width, int height) {
 		// resize the stage
-		worldController.stage.getViewport().update(width, height, true);
+		worldController.stage.getViewport().update(width, height, false);
 		((OrthographicCamera) worldController.stage.getCamera()).zoom = 1 / (worldController.stage.getWidth() / (Constants.SIZE_CUBE * 12f));
 		worldController.hud.getViewport().update(width, height, true);
 
@@ -55,5 +51,6 @@ public class WorldRenderer implements Disposable {
 
 	@Override
 	public void dispose() {
+
 	}
 }

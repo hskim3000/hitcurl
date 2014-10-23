@@ -43,13 +43,12 @@ public class Assets implements Disposable, AssetErrorListener {
 
 	public void init(AssetManager assetManager) {
 		skin = new Skin(Gdx.files.internal(Constants.SKIN_OBJECTS));
-		this.assetManager = assetManager;
+		Assets.assetManager = assetManager;
 		// set asset manager error handler
 		assetManager.setErrorListener(this);
-		// load texture atlas
-		assetManager.load(Constants.TEXTURE_ATLAS_OBJECTS, TextureAtlas.class);
-		// load skin
+		// load skin donc texture/png
 		assetManager.load(Constants.SKIN_OBJECTS, Skin.class);
+		// Load fonts
 
 		// start loading assets and wait until finished
 		assetManager.finishLoading();
